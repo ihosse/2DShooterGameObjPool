@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  life: 3
+  initialLife: 3
   points: 150
   verticalMoventLimit: -6
 --- !u!61 &5642538931034056591
@@ -205,5 +205,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ecbc24c9b0cfdf448183fea41bc7439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hierarquiyPoolName: EnemyBulletPool
+  hierarquiyPoolName: SimpleBulletPool
+  isBulletDirectionUp: 0
   collDownTime: 3

@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hierarquiyPoolName: EnemyBulletPool
-  speed: -5
+  speed: 5
   damage: 1
   minLimitX: -3
   maxLimitX: 3

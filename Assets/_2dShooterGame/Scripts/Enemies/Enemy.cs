@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour, ITakeDamage, IObjectPoolable
     private float speed = 1;
 
     [SerializeField]
-    private float life = 3;
+    private int initialLife = 3;
 
     [SerializeField]
     private int points = 100;
@@ -23,7 +23,12 @@ public class Enemy : MonoBehaviour, ITakeDamage, IObjectPoolable
     private Weapon[] weapons;
 
     private ObjectPool<GameObject> pool;
+    private int life;
 
+    private void OnEnable()
+    {
+        life = initialLife;
+    }
     private void Start()
     {
         explosion = GetComponent<Explosion> ();

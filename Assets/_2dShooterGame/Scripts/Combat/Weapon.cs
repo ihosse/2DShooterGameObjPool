@@ -7,8 +7,8 @@ public class Weapon : MonoBehaviour
 
     [SerializeField]
     private float collDownTime = 1;
-    private float timeToShoot;
 
+    private float timeToShoot;
     private BasicPool basicPool;
 
     private void Start()
@@ -27,6 +27,7 @@ public class Weapon : MonoBehaviour
         {
             GameObject bullet = basicPool.Pool.Get();
             bullet.transform.position = transform.position;
+            bullet.transform.rotation = transform.rotation;
 
             timeToShoot = 0;
         }

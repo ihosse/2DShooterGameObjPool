@@ -1521,7 +1521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hierarquiyPoolName: SimpleBulletPool
-  isShotDirectionUp: 0
+  isBulletDirectionUp: 0
   collDownTime: 0.25
 --- !u!1 &1995200422
 GameObject:

@@ -8,7 +8,7 @@ public class BasicPool : MonoBehaviour
 
     public ObjectPool<GameObject> Pool { get; protected set; }
 
-    public void Initialize(int defaultCapacity, int maxSize)
+    public virtual void Initialize(int defaultCapacity, int maxSize)
     {
         Pool = new ObjectPool<GameObject>(CreateNewGameObject,
                                      OnGetFromPool,
@@ -16,7 +16,7 @@ public class BasicPool : MonoBehaviour
                                      OnDestroyFromPool, false, defaultCapacity, maxSize);
     }
 
-    public virtual GameObject CreateNewGameObject()
+    protected virtual GameObject CreateNewGameObject()
     {
         var enemy = Instantiate(prefab, gameObject.transform);
 
