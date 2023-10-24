@@ -252,10 +252,10 @@ namespace CartoonFX
                 if (childCount < charCount)
                 {
                     // instantiate new letter GameObjects if needed
-                    GameObject model = isDynamic ? this.transform.GetChild(0).gameObject : null;
+                    UnityEngine.GameObject model = isDynamic ? this.transform.GetChild(0).gameObject : null;
                     for (int i = childCount; i < charCount; i++)
                     {
-                        var newLetter = isDynamic ? Instantiate(model, this.transform) : new GameObject();
+                        var newLetter = isDynamic ? Instantiate(model, this.transform) : new UnityEngine.GameObject();
                         if (!isDynamic)
                         {
                             newLetter.transform.SetParent(this.transform);

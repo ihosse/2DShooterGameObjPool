@@ -555,7 +555,7 @@ namespace CartoonFX
 					{
 						if (clearBehavior == ClearBehavior.Destroy)
 						{
-							GameObject.Destroy(this.gameObject);
+                            UnityEngine.GameObject.Destroy(this.gameObject);
 						}
 						else
 						{
@@ -866,7 +866,7 @@ namespace CartoonFX
 			}
 		}
 
-		static bool isPrefabSource(GameObject gameObject)
+		static bool isPrefabSource(UnityEngine.GameObject gameObject)
 		{
 			var assetType = PrefabUtility.GetPrefabAssetType(gameObject);
 			var prefabType = PrefabUtility.GetPrefabInstanceStatus(gameObject);

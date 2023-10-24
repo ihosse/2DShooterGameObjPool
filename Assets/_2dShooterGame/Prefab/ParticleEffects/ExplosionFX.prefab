@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 2433282508523890284}
   - component: {fileID: 2433282508523921356}
   - component: {fileID: 2883620193154939874}
+  - component: {fileID: -2231160573455647842}
   m_Layer: 0
   m_Name: ExplosionFX
   m_TagString: Untagged
@@ -4871,7 +4872,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2433282508537954060}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9205bc1bbacc90040a998067b5643d16, type: 3}
   m_Name: 
@@ -5027,6 +5028,19 @@ MonoBehaviour:
     perlinColor: 0
     perlinColorSpeed: 1
   fadeOutReference: {fileID: 0}
+--- !u!114 &-2231160573455647842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2433282508537954060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6567970789549e143aecb09b1ce04f0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToDeactivate: 1
 --- !u!1 &2433282508753476420
 GameObject:
   m_ObjectHideFlags: 0

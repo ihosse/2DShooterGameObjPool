@@ -1,8 +1,9 @@
 using System;
 using UnityEngine;
+using UnityEngine.Pool;
 
-[RequireComponent(typeof(Explosion))]
-public class Enemy : MonoBehaviour, ITakeDamage
+[RequireComponent (typeof(Explosion))]
+public class Enemy : MonoBehaviour, ITakeDamage, IObjectPoolable
 {
     public event Action<int> OnKilled;
 
@@ -15,13 +16,23 @@ public class Enemy : MonoBehaviour, ITakeDamage
     [SerializeField]
     private int points = 100;
 
+    [SerializeField]
+    private float verticalMoventLimit = -3;
+
     private Explosion explosion;
     private Weapon[] weapons;
 
+    private ObjectPool<GameObject> pool;
+
     private void Start()
     {
-        explosion = GetComponent<Explosion>();
+        explosion = GetComponent<Explosion> ();
         weapons = GetComponentsInChildren<Weapon>();
+    }
+
+    public void SetPool(ObjectPool<GameObject> pool)
+    {
+        this.pool = pool;
     }
 
     private void Update()
@@ -33,6 +44,11 @@ public class Enemy : MonoBehaviour, ITakeDamage
     private void Move()
     {
         transform.Translate(Vector2.up * Time.deltaTime * speed);
+
+        if(transform.position.y <= verticalMoventLimit) 
+        {
+            pool.Release(this.gameObject);
+        }
     }
 
     private void Shot()
@@ -53,9 +69,10 @@ public class Enemy : MonoBehaviour, ITakeDamage
         if (life <= 0)
         {
             OnKilled?.Invoke(points);
-            Destroy(gameObject);
+            pool.Release(this.gameObject);
 
-            explosion.Activate();
+            explosion.Create(transform.position);
         }
     }
+
 }

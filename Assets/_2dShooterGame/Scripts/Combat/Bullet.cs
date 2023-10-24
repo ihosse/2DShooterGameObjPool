@@ -1,7 +1,11 @@
-﻿using UnityEngine;
+﻿using UnityEditor.Experimental.GraphView;
+using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [SerializeField]
+    private string hierarquiyPoolName;
+
     [SerializeField]
     private float speed = 10;
 
@@ -22,8 +26,16 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private float maxLimitY;
 
-    [SerializeField]
-    private GameObject ImpactFx;
+    private BasicPool basicPool;
+    private BasicPool hitPool;
+
+    private void Start()
+    {
+        basicPool = GameObject.Find("Pools/" + hierarquiyPoolName).GetComponent<BasicPool>();
+
+        hitPool = GameObject.Find("Pools/HitEffectPool").GetComponent<BasicPool>();
+        hitPool.Initialize(5, 10);
+    }
 
     private void Update()
     {
@@ -35,7 +47,7 @@ public class Bullet : MonoBehaviour
             transform.position.y >= maxLimitY ||
             transform.position.y <= minLimitY
            )
-            Destroy(gameObject);
+            basicPool.Pool.Release(this.gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -44,11 +56,11 @@ public class Bullet : MonoBehaviour
 
         if (element != null)
         {
-            Destroy(gameObject);
+            basicPool.Pool.Release(this.gameObject);
             element.TakeDamage(damage);
 
-            GameObject effect = Instantiate(ImpactFx.gameObject, transform.position, Quaternion.identity);
-            Destroy(effect, .5f);
+            GameObject hitEffect = hitPool.Pool.Get();
+            hitEffect.transform.position = transform.position;
         }
     }
 }

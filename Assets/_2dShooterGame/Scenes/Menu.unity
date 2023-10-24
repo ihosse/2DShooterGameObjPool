@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 328941653}
   - component: {fileID: 328941655}
-  - component: {fileID: 328941657}
+  - component: {fileID: 328941656}
   m_Layer: 0
   m_Name: MenuController
   m_TagString: Untagged
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hud: {fileID: 1607561597}
   gameSceneName: Game
---- !u!114 &328941657
+--- !u!114 &328941656
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -179,9 +179,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 328941652}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18b1e01a6462334c96f2f639958a99d, type: 3}
+  m_Script: {fileID: 11500000, guid: ee820f443d13f904cb281229f03fb17f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  horizontalAxisName: Horizontal
+  verticalAxisName: Vertical
+  fire1ButtonName: Fire1
 --- !u!1 &683876465
 GameObject:
   m_ObjectHideFlags: 0

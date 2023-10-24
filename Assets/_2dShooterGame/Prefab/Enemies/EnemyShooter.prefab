@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6424988153931702467}
   - component: {fileID: 6969455803307719347}
-  - component: {fileID: 3371042066991783432}
   - component: {fileID: 69700594135302804}
+  - component: {fileID: 5642538931034056591}
   - component: {fileID: 1824272643432027100}
   m_Layer: 6
   m_Name: EnemyShooter
@@ -88,8 +88,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &3371042066991783432
-CircleCollider2D:
+--- !u!114 &69700594135302804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4119268291046551537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6338baeda213cb74b9f433ad7330ec9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  life: 3
+  points: 150
+  verticalMoventLimit: -6
+--- !u!61 &5642538931034056591
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -120,24 +136,19 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0014340878, y: 0.04015255}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.28, y: 1.28}
+    newSize: {x: 1.28, y: 1.28}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.31
---- !u!114 &69700594135302804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4119268291046551537}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f4643cf3b19c0e4a908e2aa2ba242e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  life: 3
-  points: 200
+  m_Size: {x: 0.89281416, y: 0.4138503}
+  m_EdgeRadius: 0
 --- !u!114 &1824272643432027100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,11 +158,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4119268291046551537}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6c6c50e95e1f4947a8f6d050b40b357, type: 3}
+  m_Script: {fileID: 11500000, guid: 2eeb86bac0e5429498a3abcde56bb528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionPrefab: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312, type: 3}
-  timeToAutoDestroy: 2
 --- !u!1 &6206206644769787475
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,5 +205,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ecbc24c9b0cfdf448183fea41bc7439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 7292370993033569986, guid: d2deccb303a4926499f479e19f6254d9, type: 3}
+  hierarquiyPoolName: EnemyBulletPool
   collDownTime: 3

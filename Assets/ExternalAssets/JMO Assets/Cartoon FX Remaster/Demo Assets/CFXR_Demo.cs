@@ -116,7 +116,7 @@ namespace CartoonFX
 		public Text labelEffect;
 		public Text labelIndex;
 		[Space]
-		public GameObject ground;
+		public UnityEngine.GameObject ground;
 		public Collider groundCollider;
 		public Transform demoCamera;
 		public MonoBehaviour bloom;
@@ -129,8 +129,8 @@ namespace CartoonFX
 
 		//----------------------------------------------------------------------------------------------------------------------------
 
-		[System.NonSerialized] public GameObject currentEffect;
-		GameObject[] effectsList;
+		[System.NonSerialized] public UnityEngine.GameObject currentEffect;
+        UnityEngine.GameObject[] effectsList;
 		int index = 0;
 
 		Vector3 camInitialPosition;
@@ -141,7 +141,7 @@ namespace CartoonFX
 			camInitialPosition = Camera.main.transform.position;
 			camInitialRotation = Camera.main.transform.rotation;
 
-			var list = new List<GameObject>();
+			var list = new List<UnityEngine.GameObject>();
 			for (int i = 0; i < this.transform.childCount; i++)
 			{
 				var effect = this.transform.GetChild(i).gameObject;

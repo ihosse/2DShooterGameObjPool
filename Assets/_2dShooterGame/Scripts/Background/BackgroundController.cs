@@ -3,16 +3,16 @@ using UnityEngine;
 public class BackgroundController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject backgroundPrefab;
+    private UnityEngine.GameObject backgroundPrefab;
 
     [SerializeField]
     private float speed = 10;
 
-    private GameObject[] backgrounds;
+    private UnityEngine.GameObject[] backgrounds;
     private float spriteHeight;
     void Start()
     {
-        backgrounds = new GameObject[2];
+        backgrounds = new UnityEngine.GameObject[2];
 
         for (int i = 0; i < backgrounds.Length; i++)
         {
@@ -26,7 +26,7 @@ public class BackgroundController : MonoBehaviour
 
     void Update()
     {
-        foreach (GameObject background in backgrounds) 
+        foreach (UnityEngine.GameObject background in backgrounds) 
         {
             background.transform.Translate(Vector2.down * speed * Time.deltaTime);
         }

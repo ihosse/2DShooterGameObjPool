@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -8,13 +7,7 @@ public class EnemySpawner : MonoBehaviour
     private GameManager gameManager;
 
     [SerializeField]
-    private Enemy enemyFast;
-
-    [SerializeField]
-    private Enemy enemyShooter;
-
-    [SerializeField]
-    private Enemy enemyHeavy;
+    private BasicPool enemyFastPool, enemyShooterPool, EnemyHeavyPool;
 
     [SerializeField]
     private Transform[] spawners;
@@ -24,6 +17,10 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         gameManager = GetComponent<GameManager>();
+
+        enemyFastPool.Initialize(5, 10);
+        enemyShooterPool.Initialize(3, 10);
+        EnemyHeavyPool.Initialize(2, 10);
     }
 
     private void OnDrawGizmos()
@@ -44,64 +41,64 @@ public class EnemySpawner : MonoBehaviour
         StopCoroutine(spawnerCoroutine);
     }
 
+    private void CreateEnemy(BasicPool selectedPool, Transform transform)
+    {
+        GameObject enemy = selectedPool.Pool.Get();
+        enemy.gameObject.transform.position = transform.position;
+
+        enemy.GetComponent<Enemy>().OnKilled += gameManager.OnEnemyKilled;
+    }
+
     private IEnumerator Spawner() 
     {
         while (true)
         {
             yield return new WaitForSeconds(3f);
 
-            CreateEnemy(enemyFast.gameObject, spawners[2].transform);
+            CreateEnemy(enemyFastPool, spawners[2].transform);
 
             yield return new WaitForSeconds(.5f);
 
-            CreateEnemy(enemyFast.gameObject, spawners[1].transform);
-            CreateEnemy(enemyFast.gameObject, spawners[3].transform);
+            CreateEnemy(enemyFastPool, spawners[1].transform);
+            CreateEnemy(enemyFastPool, spawners[3].transform);
 
             yield return new WaitForSeconds(.5f);
 
-            CreateEnemy(enemyFast.gameObject, spawners[0].transform);
-            CreateEnemy(enemyFast.gameObject, spawners[4].transform);
+            CreateEnemy(enemyFastPool, spawners[0].transform);
+            CreateEnemy(enemyFastPool, spawners[4].transform);
 
             yield return new WaitForSeconds(2f);
 
-            CreateEnemy(enemyFast.gameObject, spawners[1].transform);
-            CreateEnemy(enemyFast.gameObject, spawners[3].transform);
+            CreateEnemy(enemyFastPool, spawners[1].transform);
+            CreateEnemy(enemyFastPool, spawners[3].transform);
 
             yield return new WaitForSeconds(2);
 
-            CreateEnemy(enemyFast.gameObject, spawners[0].transform);
-            CreateEnemy(enemyFast.gameObject, spawners[2].transform);
-            CreateEnemy(enemyFast.gameObject, spawners[4].transform);
+            CreateEnemy(enemyFastPool, spawners[0].transform);
+            CreateEnemy(enemyFastPool, spawners[2].transform);
+            CreateEnemy(enemyFastPool, spawners[4].transform);
 
             yield return new WaitForSeconds(2);
 
-            CreateEnemy(enemyShooter.gameObject, spawners[2].transform);
+            CreateEnemy(enemyShooterPool, spawners[2].transform);
 
             yield return new WaitForSeconds(1);
 
-            CreateEnemy(enemyShooter.gameObject, spawners[1].transform);
-            CreateEnemy(enemyShooter.gameObject, spawners[3].transform);
+            CreateEnemy(enemyShooterPool, spawners[1].transform);
+            CreateEnemy(enemyShooterPool, spawners[3].transform);
 
             yield return new WaitForSeconds(1);
 
-            CreateEnemy(enemyFast.gameObject, spawners[0].transform);
-            CreateEnemy(enemyFast.gameObject, spawners[2].transform);
-            CreateEnemy(enemyFast.gameObject, spawners[4].transform);
+            CreateEnemy(enemyFastPool, spawners[0].transform);
+            CreateEnemy(enemyFastPool, spawners[2].transform);
+            CreateEnemy(enemyFastPool, spawners[4].transform);
 
             yield return new WaitForSeconds(3);
 
-            CreateEnemy(enemyHeavy.gameObject, spawners[1].transform);
-            CreateEnemy(enemyHeavy.gameObject, spawners[3].transform);
+            CreateEnemy(EnemyHeavyPool, spawners[1].transform);
+            CreateEnemy(EnemyHeavyPool, spawners[3].transform);
 
             yield return new WaitForSeconds(10);
         }
-    }
-
-    private void CreateEnemy(GameObject selectedEnemy, Transform transform) 
-    {
-        GameObject enemy = Instantiate(selectedEnemy);
-        enemy.transform.position = transform.position;
-
-        enemy.GetComponent<Enemy>().OnKilled += gameManager.OnEnemyKilled;
     }
 }

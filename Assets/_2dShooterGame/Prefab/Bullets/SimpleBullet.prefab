@@ -126,13 +126,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afd7efce64737af4883ab458f0966534, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hierarquiyPoolName: SimpleBulletPool
   speed: 10
   damage: 1
   minLimitX: -3
   maxLimitX: 3
   minLimitY: -5
   maxLimitY: 5
-  ImpactFx: {fileID: 4021103657954561961, guid: 5c755f9bc5253ea418e919994537dcc7, type: 3}
 --- !u!58 &914772000241479684
 CircleCollider2D:
   m_ObjectHideFlags: 0

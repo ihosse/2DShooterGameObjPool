@@ -3,14 +3,18 @@
 public class Weapon : MonoBehaviour
 {
     [SerializeField]
-    private Bullet bullet;
+    private string hierarquiyPoolName;
 
     [SerializeField]
     private float collDownTime = 1;
     private float timeToShoot;
 
+    private BasicPool basicPool;
+
     private void Start()
     {
+        basicPool = GameObject.Find("Pools/"+ hierarquiyPoolName).GetComponent<BasicPool>();
+        basicPool.Initialize(10, 20);
         timeToShoot = collDownTime;
     }
     private void Update()
@@ -21,7 +25,9 @@ public class Weapon : MonoBehaviour
     {
         if (timeToShoot > collDownTime)
         {
-            Instantiate(bullet, transform.position, transform.rotation);
+            GameObject bullet = basicPool.Pool.Get();
+            bullet.transform.position = transform.position;
+
             timeToShoot = 0;
         }
     }
