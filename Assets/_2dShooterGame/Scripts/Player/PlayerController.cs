@@ -2,14 +2,14 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(InputHandler))]
-[RequireComponent(typeof(Explosion))]
 public class PlayerController : MonoBehaviour, ITakeDamage
 {
     public event Action OnKilled;
 
     public InputHandler InputHandler { get { return inputHandler; } }
 
-    private Explosion explosion;
+    [SerializeField]
+    private GameObject explosionPrefab;
 
     private InputHandler inputHandler;
 
@@ -19,8 +19,6 @@ public class PlayerController : MonoBehaviour, ITakeDamage
     private void Start()
     {
         IsInControl = true;
-
-        explosion = GetComponent<Explosion>();
         inputHandler = GetComponent<InputHandler>();
     }
 
@@ -38,7 +36,9 @@ public class PlayerController : MonoBehaviour, ITakeDamage
     {
         gameObject.SetActive(false);
 
-        explosion.Create(transform.position);
+        var poolFx = Pool.GetPool(explosionPrefab);
+        GameObject hitFx = poolFx.Get();
+        hitFx.transform.position = transform.position;
 
         OnKilled?.Invoke();
     }

@@ -1,7 +1,7 @@
 ﻿using UnityEngine.Pool;
 using UnityEngine;
 
-public interface IObjectPoolable
+public interface IPoolableObject
 {
     public void SetPool(ObjectPool<GameObject> pool);
 }

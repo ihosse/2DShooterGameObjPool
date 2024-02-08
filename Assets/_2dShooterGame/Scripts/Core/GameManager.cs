@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -5,6 +6,7 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(EnemySpawner))]
 public class GameManager : MonoBehaviour
 {
+    public static Action OnGameOver;
     private EnemySpawner enemySpawner;
 
     [SerializeField]
@@ -48,6 +50,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator GameOver() 
     {
         yield return new WaitForSeconds(2);
+        OnGameOver!.Invoke();
         SceneManager.LoadScene(menuSceneName);
     }
 }

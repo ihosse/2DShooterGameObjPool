@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afd7efce64737af4883ab458f0966534, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hierarquiyPoolName: EnemyBulletPool
+  hitEffectPrefab: {fileID: 4021103657954561961, guid: 5c755f9bc5253ea418e919994537dcc7, type: 3}
   speed: 5
   damage: 1
   minLimitX: -3

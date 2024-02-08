@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.Pool;
 
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, IPoolableObject
 {
     [SerializeField]
-    private string hierarquiyPoolName;
+    private GameObject hitEffectPrefab;
 
     [SerializeField]
     private float speed = 10;
@@ -25,16 +26,7 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private float maxLimitY;
 
-    private BasicPool basicPool;
-    private BasicPool hitPool;
-
-    private void Start()
-    {
-        basicPool = GameObject.Find("Pools/" + hierarquiyPoolName).GetComponent<BasicPool>();
-
-        hitPool = GameObject.Find("Pools/HitEffectPool").GetComponent<BasicPool>();
-        hitPool.Initialize(5, 10);
-    }
+    private ObjectPool<GameObject> pool;
 
     private void Update()
     {
@@ -46,7 +38,9 @@ public class Bullet : MonoBehaviour
             transform.position.y >= maxLimitY ||
             transform.position.y <= minLimitY
            )
-            basicPool.Pool.Release(this.gameObject);
+        {
+            pool.Release(this.gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -55,12 +49,18 @@ public class Bullet : MonoBehaviour
 
         if (element != null)
         {
-            basicPool.Pool.Release(this.gameObject);
+            pool.Release(this.gameObject);
             element.TakeDamage(damage);
 
-            GameObject hitEffect = hitPool.Pool.Get();
-            hitEffect.transform.position = transform.position;
+            var poolFx = Pool.GetPool(hitEffectPrefab);
+            GameObject hitFx = poolFx.Get();
+            hitFx.transform.position = transform.position;
         }
+    }
+
+    public void SetPool(ObjectPool<GameObject> pool)
+    {
+        this.pool = pool;
     }
 }
 

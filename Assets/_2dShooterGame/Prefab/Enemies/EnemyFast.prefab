@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6969455803307719347}
   - component: {fileID: 3371042066991783432}
   - component: {fileID: 69700594135302804}
-  - component: {fileID: 1824272643432027100}
   m_Layer: 6
   m_Name: EnemyFast
   m_TagString: Untagged
@@ -138,15 +137,4 @@ MonoBehaviour:
   initialLife: 1
   points: 50
   verticalMoventLimit: -6
---- !u!114 &1824272643432027100
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4119268291046551537}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2eeb86bac0e5429498a3abcde56bb528, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312, type: 3}

@@ -7,7 +7,7 @@ public class EnemySpawner : MonoBehaviour
     private GameManager gameManager;
 
     [SerializeField]
-    private BasicPool enemyFastPool, enemyShooterPool, EnemyHeavyPool;
+    private GameObject enemyFastPrefab, enemyShooterPrefab, EnemyHeavyPrefab;
 
     [SerializeField]
     private Transform[] spawners;
@@ -17,10 +17,6 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         gameManager = GetComponent<GameManager>();
-
-        enemyFastPool.Initialize(5, 10);
-        enemyShooterPool.Initialize(3, 10);
-        EnemyHeavyPool.Initialize(2, 10);
     }
 
     private void OnDrawGizmos()
@@ -41,12 +37,13 @@ public class EnemySpawner : MonoBehaviour
         StopCoroutine(spawnerCoroutine);
     }
 
-    private void CreateEnemy(BasicPool selectedPool, Transform transform)
+    private void CreateEnemy(GameObject prefab, Transform transform)
     {
-        GameObject enemy = selectedPool.Pool.Get();
-        enemy.gameObject.transform.position = transform.position;
+        var pool = Pool.GetPool(prefab);
 
+        GameObject enemy = pool.Get(transform);
         enemy.GetComponent<Enemy>().OnKilled += gameManager.OnEnemyKilled;
+        GameManager.OnGameOver += pool.OnGameOver;
     }
 
     private IEnumerator Spawner() 
@@ -55,48 +52,48 @@ public class EnemySpawner : MonoBehaviour
         {
             yield return new WaitForSeconds(3f);
 
-            CreateEnemy(enemyFastPool, spawners[2].transform);
+            CreateEnemy(enemyFastPrefab, spawners[2].transform);
 
             yield return new WaitForSeconds(.5f);
 
-            CreateEnemy(enemyFastPool, spawners[1].transform);
-            CreateEnemy(enemyFastPool, spawners[3].transform);
+            CreateEnemy(enemyFastPrefab, spawners[1].transform);
+            CreateEnemy(enemyFastPrefab, spawners[3].transform);
 
             yield return new WaitForSeconds(.5f);
 
-            CreateEnemy(enemyFastPool, spawners[0].transform);
-            CreateEnemy(enemyFastPool, spawners[4].transform);
+            CreateEnemy(enemyFastPrefab, spawners[0].transform);
+            CreateEnemy(enemyFastPrefab, spawners[4].transform);
 
             yield return new WaitForSeconds(2f);
 
-            CreateEnemy(enemyFastPool, spawners[1].transform);
-            CreateEnemy(enemyFastPool, spawners[3].transform);
+            CreateEnemy(enemyFastPrefab, spawners[1].transform);
+            CreateEnemy(enemyFastPrefab, spawners[3].transform);
 
             yield return new WaitForSeconds(2);
 
-            CreateEnemy(enemyFastPool, spawners[0].transform);
-            CreateEnemy(enemyFastPool, spawners[2].transform);
-            CreateEnemy(enemyFastPool, spawners[4].transform);
+            CreateEnemy(enemyFastPrefab, spawners[0].transform);
+            CreateEnemy(enemyFastPrefab, spawners[2].transform);
+            CreateEnemy(enemyFastPrefab, spawners[4].transform);
 
             yield return new WaitForSeconds(2);
 
-            CreateEnemy(enemyShooterPool, spawners[2].transform);
+            CreateEnemy(enemyShooterPrefab, spawners[2].transform);
 
             yield return new WaitForSeconds(1);
 
-            CreateEnemy(enemyShooterPool, spawners[1].transform);
-            CreateEnemy(enemyShooterPool, spawners[3].transform);
+            CreateEnemy(enemyShooterPrefab, spawners[1].transform);
+            CreateEnemy(enemyShooterPrefab, spawners[3].transform);
 
             yield return new WaitForSeconds(1);
 
-            CreateEnemy(enemyFastPool, spawners[0].transform);
-            CreateEnemy(enemyFastPool, spawners[2].transform);
-            CreateEnemy(enemyFastPool, spawners[4].transform);
+            CreateEnemy(enemyFastPrefab, spawners[0].transform);
+            CreateEnemy(enemyFastPrefab, spawners[2].transform);
+            CreateEnemy(enemyFastPrefab, spawners[4].transform);
 
             yield return new WaitForSeconds(3);
 
-            CreateEnemy(EnemyHeavyPool, spawners[1].transform);
-            CreateEnemy(EnemyHeavyPool, spawners[3].transform);
+            CreateEnemy(EnemyHeavyPrefab, spawners[1].transform);
+            CreateEnemy(EnemyHeavyPrefab, spawners[3].transform);
 
             yield return new WaitForSeconds(10);
         }

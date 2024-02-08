@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class InactivateAfterTime : MonoBehaviour, IObjectPoolable
+public class InactivateAfterTime : MonoBehaviour, IPoolableObject
 {
     [SerializeField]
     private UnityEngine.GameObject explosionPrefab;
