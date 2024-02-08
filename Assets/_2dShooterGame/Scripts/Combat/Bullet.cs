@@ -45,7 +45,7 @@ public class Bullet : MonoBehaviour, IPoolableObject
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        ITakeDamage element = collision.GetComponent<ITakeDamage>();
+        IDamageable element = collision.GetComponent<IDamageable>();
 
         if (element != null)
         {

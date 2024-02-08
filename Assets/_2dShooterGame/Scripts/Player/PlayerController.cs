@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(InputHandler))]
-public class PlayerController : MonoBehaviour, ITakeDamage
+public class PlayerController : MonoBehaviour, IDamageable
 {
     public event Action OnKilled;
 

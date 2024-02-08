@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class Enemy : MonoBehaviour, ITakeDamage, IPoolableObject
+public class Enemy : MonoBehaviour, IDamageable, IPoolableObject
 {
     public event Action<int> OnKilled;
 
