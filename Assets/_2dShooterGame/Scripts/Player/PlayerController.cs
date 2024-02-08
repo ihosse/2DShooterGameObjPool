@@ -6,20 +6,17 @@ public class PlayerController : MonoBehaviour, IDamageable
 {
     public event Action OnKilled;
 
-    public InputHandler InputHandler { get { return inputHandler; } }
+    public InputHandler InputHandler { get; private set; }
 
     [SerializeField]
     private GameObject explosionPrefab;
-
-    private InputHandler inputHandler;
-
 
     public bool IsInControl { get; private set; }
 
     private void Start()
     {
         IsInControl = true;
-        inputHandler = GetComponent<InputHandler>();
+        InputHandler = GetComponent<InputHandler>();
     }
 
     public void ActivateControl(bool value)
