@@ -45,8 +45,7 @@ public class PlayerController : MonoBehaviour, IDamageable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Enemy enemy = collision.GetComponent<Enemy>();
-        if (enemy != null)
+        if(collision.TryGetComponent<Enemy>(out _))
         {
             KillMe();
         }
